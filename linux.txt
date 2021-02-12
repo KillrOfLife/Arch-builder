@@ -1,0 +1,24 @@
+	sudo pacman -S screenfetch
+	screenfetch			-eind .bashrc
+	
+	~/.bash_profile
+
+case $(tty) in
+   /dev/tty1) exec startx /usr/local/bin/start-gnome;;
+   /dev/tty2) exec startx /usr/local/bin/start-kde;;
+   /dev/tty3) exec startx /usr/bin/mate-session;;
+esac
+
+lightdm
+/etc/lightdm/lightdm.conf
+
+
+systemctl edit getty@tty1
+	/etc/systemd/system/getty@tty1.service.d/override.conf
+
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin username --noclear %I $TERM
+
+key : 4F4E24037898C98636D34E786BFA99C4781EA8F5
+ID : 781EA8F5
